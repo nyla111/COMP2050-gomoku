@@ -1,9 +1,17 @@
 # Gomoku
-In this project, you will implement various AI algorithms for Gomoku, an extension of Tic Tac Toe.
+This project extends the classic Tic Tac Toe into the more complex and strategic game of Gomoku, and focuses on developing intelligent agents to play it. I implemented, evaluated, and compared five AI algorithms with increasing levels of sophistication. The project serves as an excellent introduction to game AI, reinforcement learning, and search-based algorithms.
 
 <p align="center">
   <img src="gomoku.png" width=500/>
 </p>
+
+Gomoku is a board game where players take turns placing a stone on a grid. The first to get an unbroken row of five stones (horizontally, vertically, or diagonally) wins. Unlike Tic Tac Toe, Gomoku is played on larger boards and requires deeper strategy.
+This project includes agents using techniques like:
+* Reflex-based decision making
+* Minimax with Alpha-Beta Pruning
+* Q-Learning (Tabular and Approximate)
+* Monte Carlo Tree Search (Standard and Enhanced)
+I also tested our agents against pre-built bots, a human player, or each other in a UI or terminal-based environment.
 
 ## Set up Environment
 To set up the environment for this project, follow these steps: 
@@ -15,7 +23,7 @@ conda activate tictactoe
 pip install -r requirements.txt
 ```
 ## Project Structure
-* [game.py](project/game.py) contains the game logic. **You should read this file to implement your agent.**
+* [game.py](project/game.py) contains the game logic. 
 * [gameplay.py](project/gameplay.py) contains game interactions between players (both AI and Human). 
 * [player.py](project/player.py) contains an abstract class from which you will inherit to implement your own agents.
 * [gomoku](project/gomoku) folder contains AI agents that you need to implement.
@@ -55,10 +63,8 @@ to evaluate AI agent with our hand-crafted [test cases](project/evaluation.py). 
 + `--load` or `-l` : Load the Q table for Tabular Q-Learning agent, for weights for the features in Approximate Q-Learning agent. You should give only the file name of the weight to this argument.
 + `--no_train` : No training for Q-Learning agents.
 
-## TODO
-You will implement 5 AI agents for the game: [Reflex Agent](project/gomoku/reflex.py), [Minimax with Alpha-Beta Pruning](project/gomoku/alphabeta.py), [Q-Learning](project/gomoku/q_learning.py), [Standrad Monte Carlo Tree Search](project/gomoku/mcts_v1.py), [Better Monte Carlo Tree Search](project/gomoku/mcts_v2.py). You are recommended to follow the templates. However, you have the freedom to code in your way.
-
 ## Implementation Note
 * If you want to create a new agent, add the agent to [`project/gomoku/__init__.py`](project/gomoku/__init__.py) and then initialize the agent in [`project/__init__.py`](project/__init__.py)
 * If your agent has memory between moves in a game (e.g, a winning sequence or move history), you may need to implement `restart()` function for your agent to restart after each game to avoid bugs during game evaluation. Refer to [`master.py`](project/gomoku/bots/master.py) as an example. However, note that for QLearning agent, the trained weight or Q table should not be reset.
+
 * For Q-Learning agents, the Q-table (for Tabular Q-Learning) or the training weights (for Approximate Q-Learning) are automatically saved after training to q_table or q_weights folder respectively. The weight file has the format `{NxN}_{NUM_SIMULATIONS}.pkl` with N as the size of the board used for training. To load the training weight (both for games between agents and evaluations with test cases), please use the `--load` or `-l` command with the weight file.
